@@ -2,13 +2,16 @@ import logo from "../assets/images/BitWise.svg"
 import { FaRegCompass } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineVerifiedUser } from "react-icons/md";
+import { RiExchangeFundsLine } from "react-icons/ri";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HamMenuContext } from "../contexts/HamMenuContext";
 import { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
 
   const [hamMenu, setHamMenu] = useContext(HamMenuContext);
+  const location = useLocation();
 
   const triggerMenu = () => {
     setHamMenu(!hamMenu)
@@ -19,7 +22,9 @@ const Header = () => {
       <header>
         <div className="container">
           <div className='logo-container'>
-            <img src={logo} alt="" />
+            <Link to="/">
+              <img src={logo} alt="BitWise Logo" />
+            </Link>
           </div>
           <div className='user-img'>
             <CgProfile color="white" size={30} />
@@ -34,16 +39,22 @@ const Header = () => {
                 <li>
                   <GiHamburgerMenu className="ham-icon" onClick={triggerMenu} color="white" size={20} />
                 </li>
-                <li className="list-item">
-                  <a href="#">
+                <li className={`list-item ${location.pathname === '/' ? 'active' : ''}`}>
+                  <Link to="/">
                     <FaRegCompass color="white" size={20} />
-                    <span>testaasdfghjklkjhgfddfghj</span>
-                  </a>
+                    <span>Home</span>
+                  </Link>
+                </li>
+                <li className={`list-item ${location.pathname === '/exchange' ? 'active' : ''}`}>
+                  <Link to="/exchange">
+                    <RiExchangeFundsLine color="white" size={20} />
+                    <span>Exchange</span>
+                  </Link>
                 </li>
                 <li className="list-item">
                   <a href="#">
                     <MdOutlineVerifiedUser color="white" size={20} />
-                    <span>test</span>
+                    <span>Account</span>
                   </a>
                 </li>
               </ul>

@@ -106,6 +106,10 @@ nav {
                     .list-item:hover{
                         background-color: #1f2023;
                     }
+                    
+                    .list-item.active {
+                        background-color: #2a2a2d;
+                    }
                 }
             }
         }
