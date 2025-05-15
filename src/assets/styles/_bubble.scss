@@ -5,14 +5,104 @@
 }
 
 .bubble {
-  max-width: 60%;
+  max-width: 80%;
   padding: 15px;
   border-radius: 15px;
   position: relative;
-
-  p {
+  
+  .message-content {
     margin-bottom: 15px;
     color: #fff;
+    
+    p {
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    
+    a {
+      color: #00b1bc;
+      text-decoration: underline;
+    }
+    
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+    
+    code {
+      background-color: #2d2d2d;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+    }
+    
+    pre {
+      margin-bottom: 15px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    /* Override syntax highlighter styles */
+    div.react-syntax-highlighter-line-number {
+      user-select: none;
+    }
+    
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    
+    blockquote {
+      border-left: 3px solid #00b1bc;
+      padding-left: 10px;
+      margin-left: 0;
+      color: #dddddd;
+      font-style: italic;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    /* Typing animation */
+    .typing-animation {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background-color: rgba(0, 177, 188, 0.1);
+      
+      .typing-text {
+        font-size: 14px;
+        color: #00b1bc;
+        animation: fade 1.5s infinite;
+      }
+    }
+    
+    @keyframes fade {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    
+    /* Cursor for streaming text */
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background-color: #00b1bc;
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blink 0.8s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
   }
 
   .time {
@@ -33,5 +123,15 @@
     align-self: flex-start;
     background-color: #1f2023;
     border-bottom-left-radius: 5px;
+    
+    &.streaming {
+      border-left: 2px solid #00b1bc;
+    }
   }
+}
+
+.typing-indicator {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 20px;
 }

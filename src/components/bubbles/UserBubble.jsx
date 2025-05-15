@@ -1,7 +1,9 @@
 const UserBubble = ({ message, time }) => {
   return (
     <div className="bubble user">
-      <p>{message}</p>
+      <div className="message-content">
+        <p>{message}</p>
+      </div>
       <span className="time">{time}</span>
     </div>
   )

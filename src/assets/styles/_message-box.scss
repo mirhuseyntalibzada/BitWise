@@ -20,6 +20,7 @@
             border: none;
             background-color: #383a40;
             color: white;
+            transition: border 0.3s, background-color 0.3s;
 
             &:focus {
                 outline: none;
@@ -28,6 +29,26 @@
 
             &::placeholder {
                 color: #6d6f78;
+            }
+            
+            &.ai-typing {
+                border-left: 3px solid #00b1bc;
+                animation: pulse-border 1.5s infinite;
+                
+                &::placeholder {
+                    color: #00b1bc;
+                    opacity: 0.8;
+                }
+            }
+            
+            &.ai-thinking {
+                border-left: 3px solid #ffaa00;
+                animation: pulse-border-thinking 1.5s infinite;
+                
+                &::placeholder {
+                    color: #ffaa00;
+                    opacity: 0.8;
+                }
             }
         }
 
@@ -47,8 +68,25 @@
             &:hover {
                 color: #4752c4;
             }
+            
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
         }
     }
+}
+
+@keyframes pulse-border {
+    0% { border-color: rgba(0, 177, 188, 0.5); }
+    50% { border-color: rgba(0, 177, 188, 1); }
+    100% { border-color: rgba(0, 177, 188, 0.5); }
+}
+
+@keyframes pulse-border-thinking {
+    0% { border-color: rgba(255, 170, 0, 0.5); }
+    50% { border-color: rgba(255, 170, 0, 1); }
+    100% { border-color: rgba(255, 170, 0, 0.5); }
 }
 
 .message-box.open{
