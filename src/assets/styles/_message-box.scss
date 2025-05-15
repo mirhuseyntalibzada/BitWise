@@ -1,0 +1,57 @@
+.message-box {
+    position: fixed;
+    bottom: 0;
+    margin-left: 70px;
+    width: calc(100% - 70px);
+    right: 0;
+    padding: 20px;
+    background-color: #313338;
+    transition: .5s;
+
+    .input-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        input {
+            width: 100%;
+            padding: 12px 40px 12px 20px;
+            border-radius: 8px;
+            border: none;
+            background-color: #383a40;
+            color: white;
+
+            &:focus {
+                outline: none;
+                background-color: #404249;
+            }
+
+            &::placeholder {
+                color: #6d6f78;
+            }
+        }
+
+        button {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #5865f2;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+
+            &:hover {
+                color: #4752c4;
+            }
+        }
+    }
+}
+
+.message-box.open{
+    margin-left: 240px;
+    width: calc(100% - 240px);
+}

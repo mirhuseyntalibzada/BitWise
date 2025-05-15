@@ -1,0 +1,36 @@
+.chat {
+    z-index: -1;
+    position: fixed;
+    margin-top: 80px;
+    margin-left: 70px;
+    overflow-y: scroll;
+    width: calc(100% - 70px);
+    height: calc(100vh - 80px);
+    transition: .5s;
+    padding: 20px;
+    background-color: #313338;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #202225;
+        border-radius: 4px;
+    }
+
+    .chat-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+.chat.open {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+}
+
