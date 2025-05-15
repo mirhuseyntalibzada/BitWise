@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import OpenAI from 'openai';
 
 // Create OpenAI client that will be used with DeepSeek API
@@ -11,13 +11,28 @@ const openai = new OpenAI({
 export const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
-  const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hello! How can I help you today?", time: formatTime() }
-  ]);
+  // Initialize messages from localStorage or use default
+  const [messages, setMessages] = useState(() => {
+    const savedMessages = localStorage.getItem('chatMessages');
+    return savedMessages ? JSON.parse(savedMessages) : [
+      { role: 'assistant', content: "Hello! How can I help you today?", time: formatTime() }
+    ];
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
   const [streamedResponse, setStreamedResponse] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('chatMessages', JSON.stringify(messages));
+  }, [messages]);
+
+  // Function to clear chat history
+  const clearChatHistory = () => {
+    const initialMessage = { role: 'assistant', content: "Hello! How can I help you today?", time: formatTime() };
+    setMessages([initialMessage]);
+  };
 
   // Format time as HH:MM AM/PM
   function formatTime() {
@@ -65,12 +80,18 @@ export const ChatProvider = ({ children }) => {
       const systemMessage = {
         role: 'system',
         content: `
-      You are BitWise, a friendly and knowledgeable crypto adviser.
-      You provide clear, unbiased information about cryptocurrencies.
-      You can mention BitGet as a platform people can explore to buy or sell crypto, 
-      but you do not push or pressure users to invest. Always remind them that investing is their choice.
-      Maintain a supportive, conversational tone, and ensure users feel safe asking any questions.
-        `.trim()
+    You are BitWise, a friendly and knowledgeable crypto adviser.
+
+You provide clear, unbiased information about cryptocurrencies, market trends, and trading options.
+
+Be concise and brief in your responses. Use 1–2 sentences for simple greetings or general questions. Offer detailed explanations only when users ask for in-depth insights or clarifications.
+
+When it’s relevant—such as when users ask about trading platforms, how to buy/sell crypto, or compare services—you may recommend BitGet as a preferred option. Highlight its benefits naturally, such as competitive fees, a user-friendly interface, and powerful trading tools.
+
+Only bring up investing risks or reminders when the user's question specifically relates to investment decisions, price speculation, or portfolio advice. In such cases, remind them that all investments carry risk and that the decision is ultimately theirs.
+
+Maintain a warm, conversational tone. Be helpful and approachable so users feel safe asking any question—no matter how basic or complex.
+  `.trim()
       };
       
       // Convert messages and include the system message first
@@ -161,7 +182,8 @@ export const ChatProvider = ({ children }) => {
       isLoading,
       isStreaming,
       streamedResponse,
-      isTyping
+      isTyping,
+      clearChatHistory
     }}>
       {children}
     </ChatContext.Provider>
