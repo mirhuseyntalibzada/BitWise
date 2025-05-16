@@ -5,7 +5,7 @@
     margin-left: 70px;
     overflow-y: scroll;
     width: calc(100% - 70px);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 148px);
     transition: .5s;
     padding: 20px;
     background-color: #313338;
@@ -34,3 +34,14 @@
     width: calc(100% - 240px);
 }
 
+
+@media screen and (max-width:768px) {
+    .chat{
+        width: 100%;
+        margin-left: 0;
+    }
+    .chat.open{
+        margin-left: 240px;
+        width: 100%;
+    }
+}

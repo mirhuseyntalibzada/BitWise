@@ -19,8 +19,11 @@ const Header = () => {
 
   return (
     <>
-      <header>
+      <header className={hamMenu ? `open` : 'close'}>
         <div className="container">
+          <li className="hamburger-menu-mobile">
+            <GiHamburgerMenu className="ham-icon" onClick={triggerMenu} color="white" size={20} />
+          </li>
           <div className='logo-container'>
             <Link to="/">
               <img src={logo} alt="BitWise Logo" />
@@ -32,11 +35,14 @@ const Header = () => {
         </div>
       </header>
       <nav className={hamMenu ? `open` : 'close'}>
+        <div className="searchbar">
+          <input placeholder="Search..." type="text" />
+        </div>
         <div className="navbar">
           <div className="container">
             <div className="nav-container">
               <ul>
-                <li>
+                <li className="hamburger-menu-desktop">
                   <GiHamburgerMenu className="ham-icon" onClick={triggerMenu} color="white" size={20} />
                 </li>
                 <li className={`list-item ${location.pathname === '/' ? 'active' : ''}`}>
@@ -54,7 +60,7 @@ const Header = () => {
                 <li className="list-item">
                   <a href="#">
                     <MdOutlineVerifiedUser color="white" size={20} />
-                    <span>Account</span>
+                    <span>Privacy Policy</span>
                   </a>
                 </li>
               </ul>

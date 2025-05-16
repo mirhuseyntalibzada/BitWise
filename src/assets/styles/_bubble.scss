@@ -5,6 +5,7 @@
 }
 
 .bubble {
+  min-width: 100px;
   max-width: 80%;
   padding: 15px;
   border-radius: 15px;
@@ -120,6 +121,7 @@
   }
 
   &.assistant {
+    min-width: 100px;
     align-self: flex-start;
     background-color: #1f2023;
     border-bottom-left-radius: 5px;
@@ -134,4 +136,12 @@
   display: flex;
   justify-content: flex-start;
   padding: 10px 20px;
+}
+
+@media screen and (max-width:768px) {
+    .bubble{
+      &.assistant{
+        max-width: 100%
+      }
+    }
 }

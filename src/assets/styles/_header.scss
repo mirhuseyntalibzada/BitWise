@@ -11,6 +11,11 @@ header {
         justify-content: space-between;
         align-items: center;
 
+        .hamburger-menu-mobile {
+            display: none;
+            list-style-type: none;
+        }
+
         .logo-container {
             img {
                 width: 200px;
@@ -37,7 +42,7 @@ header {
     }
 }
 
-nav::-webkit-scrollbar{
+nav::-webkit-scrollbar {
     display: none;
 }
 
@@ -50,7 +55,11 @@ nav {
     transition: .5s;
     overflow-y: scroll;
     scrollbar-width: none;
-  -ms-overflow-style: none;
+    -ms-overflow-style: none;
+
+    .searchbar {
+        display: none;
+    }
 
     .navbar {
         padding: 10px 0;
@@ -59,6 +68,8 @@ nav {
         .container {
             padding: 0 20px;
             overflow: hidden;
+
+
 
             .nav-container {
                 width: 200px;
@@ -76,7 +87,8 @@ nav {
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
-                    >li:nth-child(1){
+
+                    .hamburger-menu-desktop {
                         padding: 0 5px;
                         margin-bottom: 10px;
                     }
@@ -85,6 +97,7 @@ nav {
                         transition: .5s;
                         border-radius: 10px;
                         padding: 10px 5px;
+
                         a {
                             display: inline-block;
                             width: 190px;
@@ -93,7 +106,8 @@ nav {
                             text-decoration: none;
                             gap: 25px;
                             overflow: hidden;
-                            svg{
+
+                            svg {
                                 flex-shrink: 0;
                             }
 
@@ -103,10 +117,10 @@ nav {
                         }
                     }
 
-                    .list-item:hover{
+                    .list-item:hover {
                         background-color: #1f2023;
                     }
-                    
+
                     .list-item.active {
                         background-color: #2a2a2d;
                     }
@@ -118,4 +132,62 @@ nav {
 
 nav.open {
     width: 240px;
+}
+
+@media screen and (max-width:768px) {
+    header {
+        transition: .5s;
+
+        .container {
+            .hamburger-menu-mobile {
+                display: inline-block;
+            }
+
+            .logo-container {
+                width: 150px;
+            }
+        }
+    }
+
+    header.open {
+        margin-left: 240px
+    }
+
+
+    nav {
+        width: 0;
+        z-index: 10;
+        margin-top: 0;
+        height: 100vh;
+
+        .searchbar {
+            display: inline-block;
+            padding: 0 20px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            input{
+                width: 100%;
+                background-color: #393a3f;
+                border: 0;
+                padding: 5px 15px;
+                border-radius: 10px;
+                color: white;
+            }
+            input:focus{
+                outline: none;
+            }
+        }
+
+        
+
+
+        .hamburger-menu-desktop {
+            display: none;
+        }
+
+        .navbar {
+            // margin-top: 80px;
+        }
+    }
 }

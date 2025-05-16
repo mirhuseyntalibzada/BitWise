@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import { HamMenuProvider } from '../contexts/HamMenuContext'
 import { RiRobot2Line } from 'react-icons/ri'
 import { IoMdClose } from 'react-icons/io'
+import { IoIosArrowDropdown } from "react-icons/io";
 
 const Exchange = () => {
   const [fromCurrency, setFromCurrency] = useState('BTC');
@@ -76,7 +77,7 @@ const Exchange = () => {
   const handleShowNews = () => {
     setNewsLoading(true);
     setShowNewsPopup(true);
-    
+
     // Simulate API call delay
     setTimeout(() => {
       setNewsLoading(false);
@@ -101,22 +102,27 @@ const Exchange = () => {
                     placeholder="Enter amount"
                     required
                   />
-                  <select 
-                    value={fromCurrency}
-                    onChange={(e) => setFromCurrency(e.target.value)}
-                  >
-                    <option value="BTC">BTC</option>
-                    <option value="ETH">ETH</option>
-                    <option value="SOL">SOL</option>
-                    <option value="USDT">USDT</option>
-                  </select>
+                  <div className='select'>
+                    <select
+                      value={fromCurrency}
+                      onChange={(e) => setFromCurrency(e.target.value)}
+                    >
+                      <option value="BTC">BTC</option>
+                      <option value="ETH">ETH</option>
+                      <option value="SOL">SOL</option>
+                      <option value="USDT">USDT</option>
+                    </select>
+                    <div className='dropdown'>
+                      <IoIosArrowDropdown />
+                    </div>
+                  </div>
                 </div>
               </div>
-              
+
               <button type="button" className="swap-button" onClick={handleSwap}>
                 ↑↓
               </button>
-              
+
               <div className="input-group">
                 <label>To</label>
                 <div className="currency-input">
@@ -126,24 +132,29 @@ const Exchange = () => {
                     readOnly
                     placeholder="Converted amount"
                   />
-                  <select 
-                    value={toCurrency}
-                    onChange={(e) => setToCurrency(e.target.value)}
-                  >
-                    <option value="BTC">BTC</option>
-                    <option value="ETH">ETH</option>
-                    <option value="SOL">SOL</option>
-                    <option value="USDT">USDT</option>
-                  </select>
+                  <div className="select">
+                    <select
+                      value={toCurrency}
+                      onChange={(e) => setToCurrency(e.target.value)}
+                    >
+                      <option value="BTC">BTC</option>
+                      <option value="ETH">ETH</option>
+                      <option value="SOL">SOL</option>
+                      <option value="USDT">USDT</option>
+                    </select>
+                    <div className='dropdown'>
+                      <IoIosArrowDropdown />
+                    </div>
+                  </div>
                 </div>
               </div>
-              
+
               <div className="button-group">
                 <button type="submit" className="exchange-button">
                   Convert
                 </button>
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="ai-button"
                   onClick={handleShowNews}
                   title={`Get latest ${toCurrency} news`}
@@ -152,7 +163,7 @@ const Exchange = () => {
                 </button>
               </div>
             </form>
-            
+
             {exchangeRate && (
               <div className="exchange-result">
                 <p>
@@ -165,20 +176,20 @@ const Exchange = () => {
             )}
           </div>
         </div>
-        
+
         {showNewsPopup && (
           <div className="news-popup-overlay" onClick={() => setShowNewsPopup(false)}>
             <div className="news-popup" onClick={(e) => e.stopPropagation()}>
               <div className="news-popup-header">
                 <h3>Latest {toCurrency} News</h3>
-                <button 
-                  className="close-button" 
+                <button
+                  className="close-button"
                   onClick={() => setShowNewsPopup(false)}
                 >
                   <IoMdClose size={22} />
                 </button>
               </div>
-              
+
               <div className="news-popup-content">
                 {newsLoading ? (
                   <div className="loading-indicator">

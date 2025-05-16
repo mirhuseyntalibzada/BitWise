@@ -24,7 +24,7 @@
     form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 10px;
 
       .input-group {
         display: flex;
@@ -48,25 +48,43 @@
             background-color: #2a2a2d;
             color: white;
             font-size: 16px;
-            
+
             &:focus {
               outline: none;
               box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
             }
           }
 
-          select {
-            width: 100px;
-            padding: 0 15px;
-            border: none;
-            border-radius: 0 10px 10px 0;
-            background-color: #3a3a3f;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            
-            &:focus {
-              outline: none;
+          .select {
+
+            position: relative;
+
+            select {
+              height: 100%;
+              width: 100px;
+              padding: 0 15px;
+              border: none;
+              border-radius: 0 10px 10px 0;
+              background-color: #3a3a3f;
+              color: white;
+              font-weight: 600;
+              cursor: pointer;
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              text-indent: 1px;
+              text-overflow: '';
+
+
+              &:focus {
+                outline: none;
+              }
+            }
+
+            .dropdown {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              right: 10px;
             }
           }
         }
@@ -83,7 +101,7 @@
         font-size: 18px;
         cursor: pointer;
         transition: background-color 0.3s;
-        
+
         &:hover {
           background-color: #4a4a4f;
         }
@@ -92,7 +110,7 @@
       .button-group {
         display: flex;
         gap: 10px;
-        
+
         .exchange-button {
           flex: 1;
           margin-top: 10px;
@@ -105,12 +123,12 @@
           font-size: 16px;
           cursor: pointer;
           transition: background-color 0.3s;
-          
+
           &:hover {
             background-color: #3e8e41;
           }
         }
-        
+
         .ai-button {
           margin-top: 10px;
           width: 50px;
@@ -124,12 +142,12 @@
           color: white;
           cursor: pointer;
           transition: all 0.3s;
-          
+
           &:hover {
             background-color: #5649d8;
             transform: translateY(-2px);
           }
-          
+
           &:active {
             transform: translateY(0);
           }
@@ -142,13 +160,13 @@
       padding: 15px;
       background-color: #2a2a2d;
       border-radius: 10px;
-      
+
       p {
         text-align: center;
         font-size: 18px;
         font-weight: 500;
       }
-      
+
       .disclaimer {
         margin-top: 10px;
         font-size: 12px;
@@ -184,20 +202,21 @@
   flex-direction: column;
   overflow: hidden;
   animation: slideUp 0.3s ease-out;
-  
+
   .news-popup-header {
+    color: white;
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #2a2a2d;
-    
+
     h3 {
       margin: 0;
       font-size: 20px;
       font-weight: 600;
     }
-    
+
     .close-button {
       background: none;
       border: none;
@@ -209,25 +228,25 @@
       align-items: center;
       justify-content: center;
       transition: background-color 0.2s;
-      
+
       &:hover {
         background-color: #2a2a2d;
       }
     }
   }
-  
+
   .news-popup-content {
     padding: 20px;
     overflow-y: auto;
     flex: 1;
-    
+
     .loading-indicator {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px 0;
-      
+
       .spinner {
         width: 40px;
         height: 40px;
@@ -237,36 +256,36 @@
         animation: spin 1s linear infinite;
         margin-bottom: 20px;
       }
-      
+
       p {
         color: #dedede;
       }
     }
-    
+
     .news-list {
       display: flex;
       flex-direction: column;
       gap: 20px;
-      
+
       .news-item {
         background-color: #1f2023;
         border-radius: 10px;
         padding: 15px;
-        
+
         h4 {
           margin: 0 0 10px 0;
           font-size: 18px;
           font-weight: 600;
-          color: #6b5cff;
+          color: #85edfc
         }
-        
+
         p {
           margin: 0;
           color: #dedede;
           line-height: 1.5;
         }
       }
-      
+
       .news-disclaimer {
         text-align: center;
         font-size: 14px;
@@ -278,45 +297,68 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { transform: translateY(50px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .exchange-container {
     .exchange-card {
       padding: 20px;
-      
+
       form {
         .input-group {
           .currency-input {
             flex-direction: column;
-            
-            input, select {
+
+            input{
               width: 100%;
               border-radius: 10px;
             }
-            
-            select {
+
+            select {}
+
+            .select {
               margin-top: 10px;
-              height: 45px;
+
+              select {
+                height: 45px;
+                width: 100%;
+                border-radius: 10px;
+              }
+
+
             }
           }
         }
       }
     }
   }
-  
+
   .news-popup {
     max-height: 85vh;
   }
-} 
+}
